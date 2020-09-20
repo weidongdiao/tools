@@ -4,70 +4,94 @@
   <meta charset="UTF-8">
   <title>❤小工具❤</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="./style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
 </head>
 <body>
+  <div class="main">
+    <div id="pomodoro">
+      <div id="clock">
+        <div id="timer">
+          <div id="title">Ready?</div>
+          <div id="countdown">
+            <span id="minutes">30</span>
+            <span id="seconds">00</span>
+          </div>
+          <div id="controls" class="reset">
+            <div id="start"><i class="fas fa-play"></i> Start</div>
+            <div id="pause"><i class="fas fa-pause"></i> Pause</div>
+            <div id="reset"><i class="fas fa-sync-alt"></i> Reset</div>
+          </div>
+        </div>
+      </div>
+      <div id="options">
+        <div id="session">
+          <i id="incrSession" class="fas fa-angle-double-up"></i>
+          <span class="option-title">Session</span>
+          <input id="sessionInput" type="number" value="30" max="60" min="1">
+          <i id="decrSession" class="fas fa-angle-double-down"></i>
+        </div>
+        <div id="break">
+          <i id="incrBreak" class="fas fa-angle-double-up"></i>
+          <span class="option-title">Break</span>
+          <input id="breakInput" type="number" value="5" max="10" min="1">
+          <i id="decrBreak" class="fas fa-angle-double-down"></i>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 随机生成数字 -->
+    <div id="pomodoro">
+      <div id="clock">
+        <div id="timer">
+          <div id="title">幸运儿是?</div>
+          <div id="countdown">
+            <span id="lucky">28</span>
+          </div>
+          <div id="controls" class="reset">
+            <div id="generate"><i class="fas fa-play"></i> GENERATE</div>
+          </div>
+        </div>
+      </div>
+      <div id="options" class="luckyOptions">
+        <div id="session">
+          <i id="incrAmount" class="fas fa-angle-double-up"></i>
+          <span class="option-title">班级人数</span>
+          <input id="luckyInput" type="number" value="52" max="500" min="2">
+          <i id="decrAmount" class="fas fa-angle-double-down"></i>
+        </div>
+      </div>
+    </div>
 
-<div id="pomodoro">
-  <div id="clock">
-    <div id="timer">
-      <div id="title">Ready?</div>
-      <div id="countdown">
-        <span id="minutes">30</span>
-        <span id="seconds">00</span>
-      </div>
-      <div id="controls" class="reset">
-        <div id="start"><i class="fas fa-play"></i> Start</div>
-        <div id="pause"><i class="fas fa-pause"></i> Pause</div>
-        <div id="reset"><i class="fas fa-sync-alt"></i> Reset</div>
-      </div>
-    </div>
   </div>
-  <div id="options">
-    <div id="session">
-      <i id="incrSession" class="fas fa-angle-double-up"></i>
-      <span class="option-title">Session</span>
-      <input id="sessionInput" type="number" value="30" max="60" min="1">
-      <i id="decrSession" class="fas fa-angle-double-down"></i>
-    </div>
-    <div id="break">
-      <i id="incrBreak" class="fas fa-angle-double-up"></i>
-      <span class="option-title">Break</span>
-      <input id="breakInput" type="number" value="5" max="10" min="1">
-      <i id="decrBreak" class="fas fa-angle-double-down"></i>
-    </div>
-  </div>
-</div>
 
-<!-- 随机生成数字 -->
-<div id="pomodoro">
-  <div id="clock">
-    <div id="timer">
-      <div id="title">幸运儿是?</div>
-      <div id="countdown">
-        <span id="lucky">28</span>
-      </div>
-      <div id="controls" class="reset">
-        <div id="generate"><i class="fas fa-play"></i> GENERATE</div>
-      </div>
-    </div>
+  <div id="keyboard">
+    <button onclick="window.keyboard(this,1)">7</button>
+    <button onclick="window.keyboard(this,1)">8</button>
+    <button onclick="window.keyboard(this,1)">9</button>
+    <br>
+    <button onclick="window.keyboard(this,1)">4</button>
+    <button onclick="window.keyboard(this,1)">5</button>
+    <button onclick="window.keyboard(this,1)">6</button>
+    <br>
+    <button onclick="window.keyboard(this,1)">1</button>
+    <button onclick="window.keyboard(this,1)">2</button>
+    <button onclick="window.keyboard(this,1)">3</button>
+    <br>
+    <button onclick="window.keyboard(this,2)">C</button>
+    <button onclick="window.keyboard(this,1)">0</button>
+    <button onclick="window.keyboard(this,3)">X</button>
   </div>
-  <div id="options" class="luckyOptions">
-    <div id="session">
-      <i id="incrAmount" class="fas fa-angle-double-up"></i>
-      <span class="option-title">班级人数</span>
-      <input id="luckyInput" type="number" value="52" max="500" min="2">
-      <i id="decrAmount" class="fas fa-angle-double-down"></i>
-    </div>
-  </div>
-</div>
+
+
 
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script><script  src="./script.js"></script>
+<script src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script>
+<script  src="./script.js"></script>
 
 </body>
 </html>
