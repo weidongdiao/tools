@@ -20,7 +20,7 @@ $(() => {
       breakMin = 1,
       sessionLength = 30 * 60,
       sessionMax = 180,
-      sessionMin = 1,
+      sessionMin = 0,
       sessionNum = 0,
       countdown,
       countType,
@@ -29,6 +29,7 @@ $(() => {
       $luckyInput = $("#luckyInput"),
       $luckyOptions = $(".luckyOptions")
       $generate = $("#generate"),
+      curInputId = ''
 
   init();
 
@@ -38,13 +39,17 @@ $(() => {
     $incrBreak.click(() => incrBreak());
     $decrBreak.click(() => decrBreak());
     $sessionInput.on("change", e => updateSession(e.target.value));
+    $sessionInput.on("click", () => showKeyboard('session'));
     $breakInput.on("change", e => updateBreak(e.target.value));
+    $breakInput.on("click", () => showKeyboard('break'));
     $start.click(() => { if (countType === "break"){ startBreak(); } else { startSession(); } });
     $pause.click(() => pause());
     $reset.click(() => reset());
     $generate.click(() => generate());
     $theme.click(e => audioSelect(e));
     $luckyInput.on("change", e => updateLucky(e.target.value));
+    $luckyInput.on("click", () => showKeyboard('lucky'));
+    window.keyboard = keyboard
   }
   function startSession(){
     sessionNum++;
@@ -55,6 +60,8 @@ $(() => {
       $(this).html("第 " + sessionNum + " 阶段").fadeIn();
     });
     start(remainingTime || sessionLength);
+    const ele = document.getElementById('keyboard')
+    ele.setAttribute('style', 'display: none')
   }
   function startBreak(){
     countType = "break";
@@ -155,9 +162,42 @@ $(() => {
     const luckyNum = Math.round(Math.random() * (max - 1)) + 1;
     $lucky.text(luckyNum);
     $luckyOptions.slideUp(143);
+    const ele = document.getElementById('keyboard')
+    ele.setAttribute('style', 'display: none')
+    
   }
   function updateLucky (num){
     $luckyInput.val(num).blur();
+  }
+
+  function showKeyboard(type) {
+    console.log(type)
+    curInputId = `${type}Input`
+    const ele = document.getElementById('keyboard')
+    ele.setAttribute('style', 'display: inline-block')
+  }
+  function keyboard(obj,tip){
+    let value = ''
+    if(tip === 1 ) {
+      var con=document.getElementById(curInputId).value;
+      value = con+obj.innerHTML
+      document.getElementById(curInputId).value= value;
+      if (curInputId === 'sessionInput') {
+        updateSession(+value);
+      }
+    } else if(tip === 2) {
+      document.getElementById(curInputId).value="";
+      if (curInputId === 'sessionInput') {
+        updateSession(0);
+      }
+    } else if(tip === 3) {
+      var con=document.getElementById(curInputId).value;
+      value = con.slice(0,-1);
+      document.getElementById(curInputId).value=value;
+      if (curInputId === 'sessionInput') {
+        updateSession(+value);
+      }
+    }
   }
 
 });
