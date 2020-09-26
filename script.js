@@ -1,6 +1,7 @@
 $(() => {
 
   let $theme = $(".theme"),
+      $audio = $("audio"),
       $title = $("#title"),
       $controls = $("#controls"),
       $options = $("#options"),
@@ -34,6 +35,7 @@ $(() => {
   init();
 
   function init(){
+    $audio.prop("volume", 0);
     $incrSession.click(() => incrSession());
     $decrSession.click(() => decrSession());
     $incrBreak.click(() => incrBreak());
@@ -68,6 +70,7 @@ $(() => {
     $title.fadeOut(43, function(){
       $(this).html("第 " + sessionNum + " 次休息").fadeIn();
     });
+    $audio.animate({volume: 0}, 1000);
     start(remainingTime || breakLength);
   }
   function start(timeLeft){
@@ -79,6 +82,9 @@ $(() => {
           secLeft = timeLeft - minLeft * 60;
       updateMinutes(minLeft);
       updateSeconds(secLeft < 10 ? "0" + secLeft : secLeft);
+      if (timeLeft < 30) {
+        $audio.animate({volume: 1}, 1000);
+      }
       if (timeLeft < 1){
         if (countType === "session"){
           startBreak(breakLength);
@@ -90,6 +96,7 @@ $(() => {
   }
   function pause(){
     sessionNum--;
+    $audio.animate({volume: 0}, 1000);
     clearInterval(countdown);
     $options.slideDown(143);
     $controls.removeClass().addClass("paused");
